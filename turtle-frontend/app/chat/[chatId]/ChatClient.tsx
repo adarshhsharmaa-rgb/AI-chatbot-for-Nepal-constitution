@@ -38,7 +38,7 @@ export default function ChatClient({ params }: {
   useEffect(() => {
     const fetchProjects = async () => {
       const token = await getToken();
-      const response = await axios.get("http://localhost:3001/projects", {
+      const response = await axios.get("https://ai-chatbot-for-nepal-constitution-production.up.railway.app/projects", {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -104,7 +104,7 @@ export default function ChatClient({ params }: {
                     <div className="flex items-center space-x-3">
                       <MessageSquare className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                       <button className="" onClick={async () => {
-                        const prompts: any = await axios.get(`http://localhost:3001/project/${project.id}`);
+                        const prompts: any = await axios.get(`https://ai-chatbot-for-nepal-constitution-production.up.railway.app/project/${project.id}`);
                         console.log(prompts.data);
                         setShowFirstTime(false);
                         setMessages(prompts.data);
@@ -231,12 +231,12 @@ export default function ChatClient({ params }: {
               <button
                 onClick={async () => {
                   if (showFirstTime) {
-                    const res = await axios.post(`http://localhost:3001/generateUsefulName/${projectId}`, {
+                    const res = await axios.post(`https://ai-chatbot-for-nepal-constitution-production.up.railway.app/generateUsefulName/${projectId}`, {
                       query: message
                     });
                   }
                   setShowFirstTime(false)
-                  const user = await axios.post(`http://localhost:3001/user/${projectId}`, {
+                  const user = await axios.post(`https://ai-chatbot-for-nepal-constitution-production.up.railway.app/user/${projectId}`, {
                     prompt: message
                   });
                   console.log("added user's prompt entry to database ");
@@ -246,7 +246,7 @@ export default function ChatClient({ params }: {
                   });
                   console.log("got response from RAG")
                   setMessages((prevMessages: any) => [...prevMessages, { type: "SYSTEM", content: response.data.response }])
-                  const system = await axios.post(`http://localhost:3001/system/${projectId}`, {
+                  const system = await axios.post(`https://ai-chatbot-for-nepal-constitution-production.up.railway.app/system/${projectId}`, {
                     prompt: response.data.response
                   });
                   console.log("added system's answer to database")

@@ -12,7 +12,7 @@ export default function() {
       const token = await getToken();
       console.log(token);
       try {
-        const project = await axios.post("http://localhost:3001/createProject",
+        const project = await axios.post("https://ai-chatbot-for-nepal-constitution-production.up.railway.app/createProject",
           {},
           {
             headers: {

@@ -1,7 +1,7 @@
 export const createProject = async (message: string, setProjectId: any, getToken: any) => {
   try {
     const token = await getToken();
-    const project = await axios.post("http://localhost:3001/project",
+    const project = await axios.post("https://ai-chatbot-for-nepal-constitution-production.up.railway.app/project",
       {
         prompt: message,
       },
