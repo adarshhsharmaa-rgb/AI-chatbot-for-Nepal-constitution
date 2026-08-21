@@ -1,12 +1,17 @@
 import ChatClient from "./ChatClient";
 
-export default async function({ params }: {
-  params: {
-    chatId: string
-  }
+export default async function Page({
+  params,
+}: {
+  params: Promise<{
+    chatId: string;
+  }>;
 }) {
-  const projectId = await params.chatId;
-  return <div>
-    <ChatClient params={{ chatId: projectId }} />
-  </div>
+  const { chatId } = await params;
+
+  return (
+    <div>
+      <ChatClient params={{ chatId }} />
+    </div>
+  );
 }
