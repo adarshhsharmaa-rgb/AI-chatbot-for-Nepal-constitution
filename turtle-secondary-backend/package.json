@@ -1,8 +1,10 @@
 {
   "name": "turtle-secondary-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "npx prisma generate && npx tsc -b",
+    "start": "npx prisma migrate deploy && node dist/index.js",
     "dev": "tsc -b && node dist/index.js"
   },
   "keywords": [],
